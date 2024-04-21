@@ -1,0 +1,51 @@
+﻿@model DatLich.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Infor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Infor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Img)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model DatLich.Models.Service_Customer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Service_Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceCustomer_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceCustomer_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceCustomer_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceCustomer_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceCustomer_Unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceCustomer_Unit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceCustomer_Infor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceCustomer_Infor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ServiceCustomer_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

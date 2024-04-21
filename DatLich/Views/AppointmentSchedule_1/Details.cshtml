@@ -1,0 +1,98 @@
+﻿@model DatLich.Models.AppointmentSchedule_1
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AppointmentSchedule_1</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dentist.Dentist_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dentist.Dentist_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Employee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Employee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShiftWork.ShiftWork_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShiftWork.ShiftWork_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentSchedule_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentSchedule_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentSchedule_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentSchedule_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Describe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Describe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOrder)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AppointmentSchedule1_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

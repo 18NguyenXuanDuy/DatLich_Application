@@ -1,0 +1,57 @@
+﻿@model DatLich.Models.Employee
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Infor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Infor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Img)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

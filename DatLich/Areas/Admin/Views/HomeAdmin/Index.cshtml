@@ -1,0 +1,167 @@
+﻿@model IEnumerable<DatLich.Models.AppointmentSchedule_1>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    var count = 1;
+
+}
+
+
+<h1 class="mt-4">Dashboard</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Dashboard</li>
+</ol>
+
+<div class="row">
+
+    <div class="col-xl-6">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Lượt đặt lịch theo Tháng
+                </div>
+                <div class="d-flex  align-items-center" style="height:auto;">
+                    Năm:
+                    <select id="option-bar" style=" margin-left: 6px; width: 80% !important;" class="form-select">
+
+                        <option value="2023">2023</option>
+                        <option selected value="2024">2024</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+            <div id="bar_footer" class="card-footer small text-muted"></div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Phần trăm đặt lịch theo Tháng
+                </div>
+
+
+                <div class="d-flex  align-items-center" style="height:auto;">
+                    Năm:
+                    <select id="option-pie" style=" margin-left: 6px; width: 80% !important;" class="form-select">
+
+                        <option value="2023">2023</option>
+                        <option selected value="2024">2024</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
+            <div id="pie_footer" class="card-footer small text-muted"></div>
+        </div>
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Danh sách đặt lịch
+      
+    </div>
+    <div class="card-body">
+        @Html.ActionLink("Xuất file PDF", "Report", new { ReportType = "PDF" })|
+        @Html.ActionLink("Xuất file Excel", "Report", new { ReportType = "Excel" })|
+        <table class=" table table-bordered table-hover" id="datatablesSimple">
+            <thead>
+                <tr style="color:white" class="bg-primary">
+                    <th style="text-align:center;">STT</th>
+                    <th>Họ Tên</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Nha sĩ</th>
+                    <th>Ca khám</th>
+                    <th>Ngày khám</th>
+
+                    @*<th>Trạng thái</th>*@
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@count</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer_Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer_Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Dentist.Dentist_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShiftWork.ShiftWork_Name)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AppointmentSchedule_Date, "{0:dd/MM/yyyy}")
+                        </td>
+
+                        @*<td>
+
+                            @Html.DisplayFor(modelItem => item.TrangThai)
+                        </td>*@
+
+                    </tr>
+                    count++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    function parseJsonDate(jsonDate) {
+    // Extract the milliseconds value from the JSON date string
+    var milliseconds = parseInt(jsonDate.replace(/\/Date\((-?\d+)\)\//, '$1'));
+
+    // Create a new Date object by passing milliseconds
+    var date = new Date(milliseconds);
+
+    // Format the date as "MM/DD/YYYY h:mm A"
+    var formattedDate = date.toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    });
+
+    return formattedDate;
+}
+      $(document).ready(function() {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("getLastUpdate", "Home")', // Replace with your controller name
+            success: function(response) {
+                if (response.success) {
+                    // Use 'response.updatedTime' here as needed
+
+                    $('#pie_footer').text("Last Updated " + parseJsonDate(response.updatedTime.ThoiDiem));
+                    $('#bar_footer').text("Last Updated " + parseJsonDate(response.updatedTime.ThoiDiem));
+                } else {
+                    console.log('Failed to get last update');
+                }
+            },
+            //error: function(xhr, status, error) {
+            //    console.error(xhr.responseText);
+            //}
+        });
+    });
+</script>
+

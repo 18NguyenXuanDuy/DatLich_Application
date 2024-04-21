@@ -1,0 +1,51 @@
+﻿@model DatLich.Models.Dentist
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dentist</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dentist_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dentist_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dentist_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dentist_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dentist_Infor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dentist_Infor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dentist_Img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dentist_Img)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Dentist_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
