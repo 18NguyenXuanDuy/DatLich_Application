@@ -7,16 +7,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Appointment_.Models;
-using Microsoft.Reporting.WebForms;
+using DatLich.Models;
 
 
-namespace Appointment_.Areas.Admin.Controllers
+namespace DatLich.Areas.Admin.Controllers
 {
     public class HomeAdminController : Controller
     {
         // GET: Admin/HomeAdmin
-        private Appointment db = new Appointment();
+        private DLKB db = new DLKB();
 
         public void SettoFalse()
         {

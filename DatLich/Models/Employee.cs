@@ -1,7 +1,8 @@
-namespace DatLich.Models
+﻿namespace DatLich.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -21,13 +22,16 @@ namespace DatLich.Models
 
         [Required]
         [StringLength(100)]
+        [DisplayName("Họ tên")]
         public string Employee_Name { get; set; }
 
         [Required]
         [StringLength(100)]
+        [DisplayName("Email")]
         public string Employee_Email { get; set; }
 
         [Column(TypeName = "ntext")]
+        [DisplayName("Thông tin")]
         public string Employee_Infor { get; set; }
 
         [Column(TypeName = "ntext")]

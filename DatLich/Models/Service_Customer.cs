@@ -1,7 +1,8 @@
-namespace DatLich.Models
+﻿namespace DatLich.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -19,16 +20,20 @@ namespace DatLich.Models
 
         [Required]
         [StringLength(100)]
+        [DisplayName("Tên dịch vụ")]
         public string ServiceCustomer_Name { get; set; }
 
         [Column(TypeName = "money")]
+        [DisplayName("Giá")]
         public decimal ServiceCustomer_Price { get; set; }
 
         [Required]
         [StringLength(20)]
+        [DisplayName("Đơn vị tính")]
         public string ServiceCustomer_Unit { get; set; }
 
         [Column(TypeName = "ntext")]
+        [DisplayName("Thông tin")]
         public string ServiceCustomer_Infor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

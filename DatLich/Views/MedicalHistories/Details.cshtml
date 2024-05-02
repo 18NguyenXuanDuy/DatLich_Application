@@ -1,0 +1,74 @@
+﻿@model DatLich.Models.MedicalHistory
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>MedicalHistory</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Customer_Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Customer_Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Dentist.Dentist_Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Dentist.Dentist_Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Prescription.Prescription_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Prescription.Prescription_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MedicalHistory_Date)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MedicalHistory_Date)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MedicalHistory_Symptoms)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MedicalHistory_Symptoms)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MedicalHistory_Diagnosis)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MedicalHistory_Diagnosis)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MedicalHistory_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

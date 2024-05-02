@@ -1,7 +1,8 @@
-namespace DatLich.Models
+﻿namespace DatLich.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -21,20 +22,25 @@ namespace DatLich.Models
         public int Customer_ID { get; set; }
 
         [StringLength(100)]
+        [DisplayName("Họ tên")]
         public string Customer_Name { get; set; }
 
         [StringLength(100)]
+        [DisplayName("Email")]
         public string Customer_Email { get; set; }
-
+        [DisplayName("Tuổi")]
         public int? Customer_Age { get; set; }
 
         [StringLength(12)]
+        [DisplayName("Số điện thoại")]
         public string Customer_Phone { get; set; }
 
         [StringLength(10)]
+        [DisplayName("Giới tính")]
         public string Customer_Gender { get; set; }
 
         [Column(TypeName = "ntext")]
+        [DisplayName("Ảnh")]
         public string Customer_Img { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

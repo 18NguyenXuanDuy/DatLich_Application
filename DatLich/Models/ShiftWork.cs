@@ -1,7 +1,8 @@
-namespace DatLich.Models
+﻿namespace DatLich.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -21,13 +22,15 @@ namespace DatLich.Models
         public int ShiftWork_ID { get; set; }
 
         [StringLength(20)]
+        [DisplayName("Tên ca")]
         public string ShiftWork_Name { get; set; }
 
         [StringLength(20)]
+        [DisplayName("Ngày ")]
         public string ShiftWork_Date { get; set; }
-
+        [DisplayName("Thời gian bắt đầu")]
         public TimeSpan ShiftWork_Start { get; set; }
-
+        [DisplayName("Thời gian kết thúc")]
         public TimeSpan ShiftWork_END { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
