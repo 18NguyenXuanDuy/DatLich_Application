@@ -33,15 +33,15 @@
         [DisplayName("Mô tả")]
 
         public string Describe { get; set; }
-
+        [DisplayName("Thời gian đặt")]
         public DateTime TimeOrder { get; set; }
-
+        [DisplayName("Nha sĩ")]
         public int? Dentist_ID { get; set; }
-
+        [DisplayName("Ca khám")]
         public int? ShiftWork_ID { get; set; }
-
+        [DisplayName("Nhân viên")]
         public int? Employee_ID { get; set; }
-
+        [DisplayName("Khách hàng")]
         public int? Customer_ID { get; set; }
 
         public virtual Customer Customer { get; set; }

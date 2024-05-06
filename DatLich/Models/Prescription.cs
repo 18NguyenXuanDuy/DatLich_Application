@@ -1,7 +1,8 @@
-namespace DatLich.Models
+﻿namespace DatLich.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -20,14 +21,17 @@ namespace DatLich.Models
         public int Prescription_ID { get; set; }
 
         [StringLength(20)]
+        [DisplayName("Ngày lập")]
         public string Prescription_Date { get; set; }
 
         [StringLength(500)]
+        [DisplayName("Triệu chứng")]
         public string Prescription_Symptom { get; set; }
 
         [StringLength(500)]
+        [DisplayName("Chuẩn đoán")]
         public string Prescription_Diagnostic { get; set; }
-
+        [DisplayName("Lịch khám")]
         public int? AppointmentSchedule_ID { get; set; }
 
         public virtual AppointmentSchedule AppointmentSchedule { get; set; }
