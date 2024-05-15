@@ -21,7 +21,7 @@
         [Key]
         public int AppointmentSchedule_ID { get; set; }
         [DisplayName("Trạng thái")]
-        public bool AppointmentSchedule_Status { get; set; }
+        public int AppointmentSchedule_Status { get; set; }
 
         [Required]
         [StringLength(20)]

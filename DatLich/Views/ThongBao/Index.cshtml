@@ -1,0 +1,67 @@
+﻿@model DatLich.Models.AppointmentSchedule_1
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ĐĂNG NHẬP</title>
+    <style>
+        body {
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 2rem;
+            background-color: #fff;
+        }
+
+        .input {
+            min-height: 50px;
+            width: 300px;
+            padding: 0 1rem;
+            color: #000;
+            font-size: 15px;
+            border: 1px solid #5e4dcd;
+            border-radius: 6px;
+            background-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .button--submit {
+            min-height: 50px;
+            width: 300px;
+            padding: .5em 1em;
+            border: none;
+            border-radius: 6px;
+            background-color: #5e4dcd;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color .3s ease-in-out;
+        }
+
+            .button--submit:hover {
+                background-color: #5e5dcd;
+            }
+
+        .input:focus,
+        .input:focus-visible {
+            border-color: #3898EC;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-group">
+        <h1>ĐĂNG NHẬP</h1>
+        <form action="@Url.Action("Index","ThongBao")" method="post">
+            <input type="email" class="input" name="email" placeholder="Nhập email"><br />
+            <input type="submit" value="Gửi về Gmail" class="button--submit" autocomplete="off">
+        </form>
+    </div>
+</body>
+</html>

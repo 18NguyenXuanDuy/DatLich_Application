@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DatLich.Models;
-
+using Microsoft.Reporting.WebForms;
 
 namespace DatLich.Areas.Admin.Controllers
 {
@@ -96,9 +96,10 @@ namespace DatLich.Areas.Admin.Controllers
 
             reportDataSource.Name = "DataSet1";
 
-            var lichKhamsList = db.AppointmentSchedule
+            var lichKhamsList = db.AppointmentSchedule_1
             .Include(l=>l.Dentist)
             .Include(l => l.ShiftWork)
+            .Include(l=>l.Employee)
             .ToList();
 
             var lichKhams = lichKhamsList.Select((l, index) => new
@@ -106,12 +107,14 @@ namespace DatLich.Areas.Admin.Controllers
                 //STT = index + 1,
                 // Include other properties
                 Customer_Name = l.Customer_Name,
-                Customer_Email = l.Customer_Email,
-                Customer_Phone = l.Customer_Phone,
+                //Customer_Email = l.Customer_Email,
+                //Customer_Phone = l.Customer_Phone,
                 Dentist_Name = l.Dentist.Dentist_Name,
                 ShiftWork_Name = l.ShiftWork.ShiftWork_Name,
+                Employee_Name=l.Employee.Employee_Name,
                 AppointmentSchedule_Date = l.AppointmentSchedule_Date,
-                Describe = l.Describe
+                TimeOder=l.TimeOrder,
+                AppointmentSchedule_Status = l.AppointmentSchedule_Status ? "Hoàn thành" : "Chưa hoàn thành",
             }).ToList();
             reportDataSource.Value = lichKhams;
             localreport.DataSources.Add(reportDataSource);

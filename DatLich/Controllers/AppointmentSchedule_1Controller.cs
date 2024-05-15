@@ -81,7 +81,7 @@ namespace DatLich.Controllers
                      .Select(a => a.Customer_ID)
                      .FirstOrDefault();
                     AppointmentSchedule appointmentSchedule = new AppointmentSchedule();
-                    appointmentSchedule.AppointmentSchedule_Status = appointmentSchedule_1.AppointmentSchedule_Status;
+                    appointmentSchedule.AppointmentSchedule_Status = 1;
                     appointmentSchedule.AppointmentSchedule_Date =  date.ToString(); ;
                     appointmentSchedule.Customer_ID= CustomerId1;
                     appointmentSchedule.TimeOrder = DateTime.Now;
