@@ -61,6 +61,8 @@
         <form action="@Url.Action("Index","ThongBao")" method="post">
             <input type="email" class="input" name="email" placeholder="Nhập email"><br />
             <input type="submit" value="Gửi về Gmail" class="button--submit" autocomplete="off">
+            <p class="text-danger">@ViewBag.Loi</p>
+
         </form>
     </div>
 </body>

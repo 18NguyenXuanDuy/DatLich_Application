@@ -50,12 +50,14 @@ namespace DatLich.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AppointmentSchedule1_ID,Customer_Name,Customer_Email,Customer_Phone,AppointmentSchedule_Status,AppointmentSchedule_Date,Describe,TimeOrder,Dentist_ID,ShiftWork_ID,Employee_ID")] AppointmentSchedule_1 appointmentSchedule_1,string date)
+        public ActionResult Create( AppointmentSchedule_1 appointmentSchedule_1)
         {
+            string date = Request["date"];
             if (ModelState.IsValid)
             {
+                
                 appointmentSchedule_1.TimeOrder = DateTime.Now;
-                appointmentSchedule_1.AppointmentSchedule_Date=date.ToString();
+                appointmentSchedule_1.AppointmentSchedule_Date= date.ToString();
                 db.AppointmentSchedule_1.Add(appointmentSchedule_1);
                 
                 int? CustomerId = db.Customer
@@ -82,7 +84,7 @@ namespace DatLich.Controllers
                      .FirstOrDefault();
                     AppointmentSchedule appointmentSchedule = new AppointmentSchedule();
                     appointmentSchedule.AppointmentSchedule_Status = 1;
-                    appointmentSchedule.AppointmentSchedule_Date =  date.ToString(); ;
+                   appointmentSchedule.AppointmentSchedule_Date = date.ToString(); ;
                     appointmentSchedule.Customer_ID= CustomerId1;
                     appointmentSchedule.TimeOrder = DateTime.Now;
                     appointmentSchedule.Describe = appointmentSchedule_1.Describe;
@@ -138,7 +140,7 @@ namespace DatLich.Controllers
             ViewBag.Dentist_ID = new SelectList(db.Dentist, "Dentist_ID", "Dentist_Name", appointmentSchedule_1.Dentist_ID);
             ViewBag.Employee_ID = new SelectList(db.Employee, "Employee_ID", "Employee_Name", appointmentSchedule_1.Employee_ID);
             ViewBag.ShiftWork_ID = new SelectList(db.ShiftWork, "ShiftWork_ID", "ShiftWork_Name", appointmentSchedule_1.ShiftWork_ID);
-            return View(appointmentSchedule_1);
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: AppointmentSchedule_1/Edit/5

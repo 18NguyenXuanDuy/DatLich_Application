@@ -5,28 +5,6 @@
 }
 
 
-<link href="~/wwroot/User/img/favicon.ico" rel="icon">
-
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
-
-<!-- Icon Font Stylesheet -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-<!-- Libraries Stylesheet -->
-<link href="~/wwroot/User/lib/animate/animate.min.css" rel="stylesheet">
-<link href="~/wwroot/User/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-<link href="~/wwroot/User/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-<!-- Customized Bootstrap Stylesheet -->
-<link href="~/wwroot/User/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Template Stylesheet -->
-<link href="~/wwroot/User/css/style.css" rel="stylesheet">
-
 <style>
     textarea#Describe {
         height: 200px;
@@ -382,24 +360,25 @@
                                             @Html.ValidationMessageFor(model => model.Customer_Phone, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-6">
+                                    @*<div class="col-12 col-sm-6">
                                         <div class="col-md-10">
                                             @Html.DropDownList("Dentist_ID", null, htmlAttributes: new { @class = "form-control", style = "height: 55px; background-color: white;" })
                                             @Html.ValidationMessageFor(model => model.Dentist_ID, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
+                                    </div>*@
                                     <div class="col-12 col-sm-6">
                                         <div class="col-md-10">
-                                            <div class="date" id="date" data-target-input="nearest">
+                                            <div class="date" style="position: relative;" id="date" data-target-input="nearest">
                                                 @*<input type="text"
                                                     class="form-control border-0 datetimepicker-input"
                                                     placeholder="Ngày khám" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" name="date" id="datepicker">*@
                                                 @*<input type="text"
                                                     class="form-control border-0 datetimepicker-input"
                                                     placeholder="Ngày khám" data-target="#date" style="height: 55px;" name="date">*@
-                                                <input type="date"
+                                                <input type="text"
                                                        class="form-control border-0 datetimepicker-input"
-                                                       placeholder="Ngày khám" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" name="date" id="datepicker">
+                                                       placeholder="Ngày khám" data-target="#date" data-toggle="datetimepicker" autocomplete="off" style="height: 55px;" 
+                                                       name="date" id="datepicker">
                                             </div>
 
 
@@ -471,7 +450,7 @@
 
 </main>
 <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/wwroot/User/lib/wow/wow.min.js"></script>
 <script src="~/wwroot/User/lib/easing/easing.min.js"></script>
@@ -485,26 +464,26 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>-->
 <!-- Template Javascript -->
-<script src="~/wwroot/User/js/main.js"></script>
+<!--<script src="~/wwroot/User/js/main.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
 <script>
-    $(document).ready(function () {
-        $("#datepicker").change(function () {
-            var date = $(this).val();
-            $.ajax({
-                url: "/AppointmentSchedule_1/Create",
-                type: "POST",
-                data: {
-                    date: date
-                },
-                success: function (response) {
-                }
-            });
-        });
-    });
+    //$(document).ready(function () {
+    //    $("#datepicker").change(function () {
+    //        var date = $(this).val();
+    //        $.ajax({
+    //            url: "/AppointmentSchedule_1/Create",
+    //            type: "POST",
+    //            data: {
+    //                date: date
+    //            },
+    //            success: function (response) {
+    //            }
+    //        });
+    //    });
+    //});
 </script>
