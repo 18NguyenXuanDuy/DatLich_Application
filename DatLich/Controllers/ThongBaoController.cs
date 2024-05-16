@@ -98,7 +98,7 @@ namespace DatLich.Controllers
                 //return Json(new { success = true });
                     return RedirectToAction("XacNhanOTP");
             }
-                return View();
+
 
         }
         public ActionResult XacNhanOTP()

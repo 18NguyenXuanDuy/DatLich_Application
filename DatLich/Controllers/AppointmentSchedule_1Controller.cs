@@ -35,6 +35,10 @@ namespace DatLich.Controllers
             }
             return View(appointmentSchedule_1);
         }
+        public ActionResult Thanhcong()
+        {
+            return View();
+        }
 
         // GET: AppointmentSchedule_1/Create
         public ActionResult Create()
@@ -50,7 +54,7 @@ namespace DatLich.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AppointmentSchedule1_ID,Customer_Name,Customer_Email,Customer_Phone,AppointmentSchedule_Status,AppointmentSchedule_Date,Describe,TimeOrder,Dentist_ID,ShiftWork_ID,Employee_ID")] AppointmentSchedule_1 appointmentSchedule_1,string date)
+        public ActionResult Create([Bind(Include = "AppointmentSchedule1_ID,Customer_Name,Customer_Email,Customer_Phone,Describe,ShiftWork_ID")] AppointmentSchedule_1 appointmentSchedule_1,string date)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +102,7 @@ namespace DatLich.Controllers
                     HistoryChange_Message = $"Lịch khám của {appointmentSchedule_1.Customer_Name} đã được thêm mới vào ngày {DateTime.Now.ToString("dd/MM/yyyy")} lúc {DateTime.Now.ToString("HH:mm")}.",
                     HistoryChange_Time = DateTime.Now,
                     Activity_Change = "ADD",
-                    AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID
+                    //AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID
                 };
                 db.HistoryChanges.Add(notification);
 
@@ -111,7 +115,7 @@ namespace DatLich.Controllers
                     .FirstOrDefault();
                 if(shiftworkId == null)
                 {
-                    shiftWork_Appoint.AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID;
+                    //shiftWork_Appoint.AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID;
                     shiftWork_Appoint.ShiftWorkAppoint_Date = date.ToString();
                     shiftWork_Appoint.ShiftWork_ID = appointmentSchedule_1.ShiftWork_ID;
                     shiftWork_Appoint.Current_Quantity = 1;
@@ -176,7 +180,7 @@ namespace DatLich.Controllers
                     HistoryChange_Message = $"Lịch khám của {appointmentSchedule_1.Customer_Name} đã được sửa đổi vào ngày {DateTime.Now.ToString("dd/MM/yyyy")} lúc {DateTime.Now.ToString("HH:mm")}.",
                     HistoryChange_Time = DateTime.Now,
                     Activity_Change = "EDIT",
-                    AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID
+                   // AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID
 
                 };
 
@@ -218,7 +222,7 @@ namespace DatLich.Controllers
                 HistoryChange_Message = $"Lịch khám của {appointmentSchedule.Customer_Name} đã được xóa vào ngày {DateTime.Now.ToString("dd/MM/yyyy")} lúc {DateTime.Now.ToString("HH:mm")}.",
                 HistoryChange_Time = DateTime.Now,
                 Activity_Change = "DELETE",
-                AppointmentSchedule_ID = appointmentSchedule.AppointmentSchedule1_ID
+                //AppointmentSchedule_ID = appointmentSchedule.AppointmentSchedule1_ID
 
             };
 

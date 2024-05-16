@@ -29,7 +29,7 @@
         [DisplayName("Trạng thái")]
         public bool AppointmentSchedule_Status { get; set; }
 
-        [Required]
+        
         [StringLength(20)]
         [DisplayName("Ngày khám")]
         public string AppointmentSchedule_Date { get; set; }

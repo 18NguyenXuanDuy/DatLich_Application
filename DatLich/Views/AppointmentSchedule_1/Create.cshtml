@@ -7,108 +7,132 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+
+<style>
+    textarea#Describe {
+        width: 475px;
+        height: 200px;
+    }
+
+    button#btnDatLich {
+        width: 477px;
+    }
+</style>
+@using (Html.BeginForm("Create", "AppointmentSchedule_1", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>AppointmentSchedule_1</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Customer_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Customer_Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Customer_Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Customer_Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Customer_Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Customer_Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Customer_Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AppointmentSchedule_Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.AppointmentSchedule_Status)
-                    @Html.ValidationMessageFor(model => model.AppointmentSchedule_Status, "", new { @class = "text-danger" })
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="d-inline-block border rounded-pill py-1 px-4">Appointment</p>
+                    <h1 class="mb-4">Make An Appointment To Visit Our Doctor</h1>
+                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                            <i class="fa fa-phone-alt text-primary"></i>
+                        </div>
+                        <div class="ms-4">
+                            <p class="mb-2">Call Us Now</p>
+                            <h5 class="mb-0">+012 345 6789</h5>
+                        </div>
+                    </div>
+                    <div class="bg-light rounded d-flex align-items-center p-5">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                            <i class="fa fa-envelope-open text-primary"></i>
+                        </div>
+                        <div class="ms-4">
+                            <p class="mb-2">Mail Us Now</p>
+                            <h5 class="mb-0">info@example.com</h5>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AppointmentSchedule_Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AppointmentSchedule_Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AppointmentSchedule_Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="bg-light rounded h-100 d-flex align-items-center p-5">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    @*<input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">*@
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control", style = "height: 55px;", placeholder = "Họ và tên", autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Customer_Email, new { htmlAttributes = new { @class = "form-control", style = "height: 55px;", placeholder = "Email", autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.Customer_Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Customer_Phone, new { htmlAttributes = new { @class = "form-control", style = "height: 55px;", placeholder = "Số điện thoại", autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.Customer_Phone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            
+                                <div class="col-12 col-sm-6">
+                                    <div class="col-md-10">
+                                        <div class="date" id="date" data-target-input="nearest">
+                                            @*<input type="text"
+                                                class="form-control border-0 datetimepicker-input"
+                                                placeholder="Ngày khám" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" name="date" id="datepicker">*@
+                                            @*<input type="text"
+                                                class="form-control border-0 datetimepicker-input"
+                                                placeholder="Ngày khám" data-target="#date" style="height: 55px;" name="date">*@
+                                            <input type="date"
+                                                   class="form-control border-0 datetimepicker-input"
+                                                   placeholder="Ngày khám" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" name="date" id="datepicker">
+                                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Describe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Describe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Describe, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TimeOrder, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TimeOrder, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TimeOrder, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                        <span>@Html.ValidationMessageFor(model => model.AppointmentSchedule_Date, "", new { @class = "text-danger" })</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("ShiftWork_ID", null, htmlAttributes: new { @class = "form-control", style = "height: 55px; background-color: white;" })
+                                        @Html.ValidationMessageFor(model => model.ShiftWork_ID, "", new { @class = "text-danger" })
+                                        ViewBag.LoiSoLuong
+                                    </div>
+                                </div>
+                                <div class="col-12">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Dentist_ID, "Dentist_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Dentist_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Dentist_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                    @Html.TextAreaFor(model => model.Describe, new { htmlAttributes = new { @class = "form-control", style = "width: 500px;" } })
+                                    @Html.ValidationMessageFor(model => model.Describe, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShiftWork_ID, "ShiftWork_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ShiftWork_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ShiftWork_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit" id="btnDatLich">Đặt lịch</button>
+                                </div>
+                            </div>
+                        </form>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Employee_ID, "Employee_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Employee_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Employee_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#datepicker").change(function () {
+            var date = $(this).val();
+            $.ajax({
+                url: "/AppointmentSchedule_1/Create",
+                type: "POST",
+                data: {
+                    date: date
+                },
+                success: function (response) {
+                }
+            });
+        });
+    });
+</script>

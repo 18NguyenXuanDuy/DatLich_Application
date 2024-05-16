@@ -21,7 +21,7 @@ namespace DatLich.Areas.Admin.Controllers
         {
             var currentTime = DateTime.Now;
 
-            var rowsToUpdate = db.AppointmentSchedule.ToList();
+            var rowsToUpdate = db.AppointmentSchedule_1.ToList();
 
             foreach (var row in rowsToUpdate)
             {
@@ -41,17 +41,17 @@ namespace DatLich.Areas.Admin.Controllers
             }
             SettoFalse();
 
-            var lichKhamList = db.AppointmentSchedule.ToList();
+            var lichKhamList = db.AppointmentSchedule_1.ToList();
 
             // Order the fetched data in memory
             lichKhamList = lichKhamList.OrderByDescending(x => DateTime.ParseExact(x.AppointmentSchedule_Date, "yyyy-MM-dd", CultureInfo.InvariantCulture).Date)
-            .ThenBy(x => x.AppointmentSchedule_ID).ToList();
+            .ThenBy(x => x.AppointmentSchedule1_ID).ToList();
             return View(lichKhamList);
         }
         [HttpPost]
         public JsonResult getdataCharBar(int? year)
         {
-            var allData = db.AppointmentSchedule.ToList(); // Fetch all data from the database
+            var allData = db.AppointmentSchedule_1.ToList(); // Fetch all data from the database
 
             var monthlyCounts = allData
                 .Where(x => DateTime.ParseExact(x.AppointmentSchedule_Date, "yyyy-MM-dd", CultureInfo.InvariantCulture).Year == year) // Filter by year
