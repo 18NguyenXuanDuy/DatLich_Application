@@ -139,10 +139,10 @@ namespace DatLich.Controllers
                         return RedirectToAction("HienThi", "User");
                     }else if (dentist != null)
                     {
-                        return RedirectToAction("Confirm", "Dentist");
+                        return RedirectToAction("Index", "Dentist");
                     }else
                     {
-                        return RedirectToAction("Confirm", "Employee");
+                        return RedirectToAction("Index", "Employee");
                     }
 
                 }

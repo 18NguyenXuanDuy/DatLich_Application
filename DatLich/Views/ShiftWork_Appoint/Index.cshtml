@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DatLich.Models.ShiftWork_Appoint>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th >
+            @Html.DisplayNameFor(model => model.AppointmentSchedule.AppointmentSchedule_Date)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.ShiftWork.ShiftWork_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShiftWorkAppoint_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Current_Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Maximum_Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.AppointmentSchedule.AppointmentSchedule_Date)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.ShiftWork.ShiftWork_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShiftWorkAppoint_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Current_Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Maximum_Quantity)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.ShiftWorkAppoint_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ShiftWorkAppoint_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ShiftWorkAppoint_ID })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -112,8 +112,8 @@
 
                         @*<td>
 
-                            @Html.DisplayFor(modelItem => item.TrangThai)
-                        </td>*@
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>*@
 
                     </tr>
                     count++;
@@ -147,7 +147,7 @@
       $(document).ready(function() {
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("getLastUpdate", "Home")', // Replace with your controller name
+            url: '@Url.Action("getLastUpdate", "HomeAdmin")', // Replace with your controller name
             success: function(response) {
                 if (response.success) {
                     // Use 'response.updatedTime' here as needed

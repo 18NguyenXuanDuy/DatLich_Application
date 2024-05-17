@@ -54,6 +54,10 @@ namespace DatLich.Controllers
         {
             if (ModelState.IsValid)
             {
+                string email = Session["Login"] as string;
+                var user = db.Dentist.FirstOrDefault(u => u.Dentist_Email == email);
+                medicalHistory.Dentist_ID=user.Dentist_ID;
+                medicalHistory.MedicalHistory_Date=DateTime.Now.ToString();
                 db.MedicalHistory.Add(medicalHistory);
                 db.SaveChanges();
                 return RedirectToAction("Index");

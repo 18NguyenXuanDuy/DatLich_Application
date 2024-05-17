@@ -255,6 +255,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MedicalHistoriesController.cs" />
+    <Compile Include="Controllers\ShiftWork_AppointController.cs" />
     <Compile Include="Controllers\ThongBaoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DATN_ApplicationDataSet.Designer.cs">
@@ -537,12 +538,17 @@
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\AppointmentSchedule_1\Thanhcong.cshtml" />
     <Content Include="Views\User\HienThi.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\ShiftWork_Appoint\Create.cshtml" />
+    <Content Include="Views\ShiftWork_Appoint\Delete.cshtml" />
+    <Content Include="Views\ShiftWork_Appoint\Details.cshtml" />
+    <Content Include="Views\ShiftWork_Appoint\Edit.cshtml" />
+    <Content Include="Views\ShiftWork_Appoint\Index.cshtml" />
+    <Content Include="Views\Dentist\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\Dentist\" />
-    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

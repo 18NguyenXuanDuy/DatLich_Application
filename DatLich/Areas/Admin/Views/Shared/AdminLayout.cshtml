@@ -39,7 +39,7 @@
                     <li><a class="dropdown-item" href="#!">DETI</a></li>
 
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="@Url.Action("Index", "Home")">Logout</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -71,6 +71,8 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="@Url.Action("Index","Dentists")">Nha sĩ</a>
                                 <a class="nav-link" href="@Url.Action("Index","Employees")">Nhân viên</a>
+                                <a class="nav-link" href="@Url.Action("Index","Service_Customer")">Dịch vụ</a>
+                                <a class="nav-link" href="@Url.Action("Index","Customers")">Khách hàng</a>
 
                             </nav>
                         </div>

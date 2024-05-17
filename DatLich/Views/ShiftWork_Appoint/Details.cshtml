@@ -1,0 +1,59 @@
+﻿@model DatLich.Models.ShiftWork_Appoint
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShiftWork_Appoint</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentSchedule.AppointmentSchedule_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentSchedule.AppointmentSchedule_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShiftWork.ShiftWork_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShiftWork.ShiftWork_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShiftWorkAppoint_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShiftWorkAppoint_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Current_Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Current_Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maximum_Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maximum_Quantity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ShiftWorkAppoint_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
