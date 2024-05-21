@@ -16,7 +16,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     
     
-    @using (Html.BeginForm()) 
+    @using (Html.BeginForm("Create", "Comment_Customer", FormMethod.Post)) 
     {
         @Html.AntiForgeryToken()
         
@@ -32,21 +32,21 @@
                 </div>
             </div>
     
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.CommentCustomer_TimeOrder, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.CommentCustomer_TimeOrder, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CommentCustomer_TimeOrder, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
     
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.Customer_ID, "Customer_ID", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("Customer_ID", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Customer_ID, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

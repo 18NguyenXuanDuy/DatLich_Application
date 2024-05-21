@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,11 +47,23 @@ namespace DatLich.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Dentist_ID,Dentist_Name,Dentist_Email,Dentist_Infor,Dentist_Img")] Dentist dentist)
+        public ActionResult Create([Bind(Include = "Dentist_ID,Dentist_Name,Dentist_Email,Dentist_Infor,Dentist_Img")] Dentist dentist, HttpPostedFileBase uploadhinh)
         {
             if (ModelState.IsValid)
             {
                 db.Dentist.Add(dentist);
+
+                if (uploadhinh != null && uploadhinh.ContentLength > 0)
+                {
+                    int id = dentist.Dentist_ID;
+
+                    string _FileName = "";
+                    int index = uploadhinh.FileName.IndexOf('.');
+                    _FileName = "Dentist" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
+                    string _path = Path.Combine(Server.MapPath("~/Upload/Dentist"), _FileName);
+                    uploadhinh.SaveAs(_path);
+                    dentist.Dentist_Img = _FileName;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -78,11 +91,22 @@ namespace DatLich.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Dentist_ID,Dentist_Name,Dentist_Email,Dentist_Infor,Dentist_Img")] Dentist dentist)
+        public ActionResult Edit([Bind(Include = "Dentist_ID,Dentist_Name,Dentist_Email,Dentist_Infor,Dentist_Img")] Dentist dentist, HttpPostedFileBase uploadhinh)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(dentist).State = EntityState.Modified;
+                if (uploadhinh != null && uploadhinh.ContentLength > 0)
+                {
+                    int id = dentist.Dentist_ID;
+
+                    string _FileName = "";
+                    int index = uploadhinh.FileName.IndexOf('.');
+                    _FileName = "Dentist" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
+                    string _path = Path.Combine(Server.MapPath("~/Upload/Dentist"), _FileName);
+                    uploadhinh.SaveAs(_path);
+                    dentist.Dentist_Img = _FileName;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

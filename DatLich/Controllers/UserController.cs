@@ -15,16 +15,52 @@ namespace DatLich.Controllers
         {
             return View();
         }
-        public ActionResult Ls()
+        public ActionResult Comment(string message, string email, string subject)
+        {
+            string email1 = Session["Login"] as string;
+            string email2 = db.Customer.Where(x => x.Customer_Email == email).Select(x=>x.Customer_Email).FirstOrDefault();
+            Comment_Customer comment_Customer = new Comment_Customer();
+            if(email1==null && email2 == null)
+            {
+                ViewBag.Thongbaolienhe = "Bạn cần đặt lịch trước để sử dụng chức năng này";
+            }
+            else
+            {
+                comment_Customer.CommentCustomer_Content = subject + "/n" + message;
+                DateTime currentDate = DateTime.Now;
+                string formattedDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+                comment_Customer.CommentCustomer_TimeOrder = formattedDate;
+                var user1 = db.Customer.Where(x => x.Customer_Email == email1).FirstOrDefault();
+                var user2 = db.Customer.Where(x => x.Customer_Email == email2).FirstOrDefault();
+                if (user1 != null)
+                {
+                    comment_Customer.Customer_ID = user1.Customer_ID;
+
+                }
+                if (user2 != null)
+                {
+                    comment_Customer.Customer_ID = user2.Customer_ID;
+
+                }
+            }
+            db.Comment_Customer.Add(comment_Customer);
+            db.SaveChanges();
+
+            return RedirectToAction("Index","Home");
+
+        }
+        public ActionResult Hienthilichsu()
         {
             string email = Session["Login"] as string;
-
-            return View();
+            var user = db.Customer.FirstOrDefault(u => u.Customer_Email == email);
+            var medicalHistory = db.MedicalHistory.Where(x=>x.Customer_ID==user.Customer_ID);
+            return View(medicalHistory.ToList());
         }
         public ActionResult HienThi()
         {
             string email = Session["Login"] as string;
             var user = db.AppointmentSchedule_1.FirstOrDefault(u => u.Customer_Email == email);
+            ViewBag.User=user.Customer_Name;
             if (user == null)
             {
                 return RedirectToAction("Create", "AppointmentSchedule_1");

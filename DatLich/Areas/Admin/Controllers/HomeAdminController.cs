@@ -102,7 +102,14 @@ namespace DatLich.Areas.Admin.Controllers
             .Include(l=>l.Employee)
             .ToList();
 
-            var lichKhams = lichKhamsList.Select((l, index) => new
+            var lichKhams = lichKhamsList
+                .Where(l => l.Customer_Name != null
+                && l.Dentist?.Dentist_Name != null
+                && l.ShiftWork?.ShiftWork_Name != null
+                && l.Employee?.Employee_Name != null
+                && l.AppointmentSchedule_Date != null
+                && l.TimeOrder != null)
+                .Select((l, index) => new
             {
                 //STT = index + 1,
                 // Include other properties

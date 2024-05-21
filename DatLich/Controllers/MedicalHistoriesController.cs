@@ -39,7 +39,29 @@ namespace DatLich.Controllers
         // GET: MedicalHistories/Create
         public ActionResult Create()
         {
-            ViewBag.Customer_ID = new SelectList(db.Customer, "Customer_ID", "Customer_Name");
+            DateTime currentDate = DateTime.Now;
+            string formattedDate = currentDate.ToString("yyyy-MM-dd");
+
+            var customersWithAppointments = db.AppointmentSchedule
+                                                .Where(a => a.AppointmentSchedule_Date == formattedDate)
+                                                .Join(db.Customer,
+                                                 appointment => appointment.Customer_ID,
+                                                customer => customer.Customer_ID,
+                                                 (appointment, customer) => new
+                                                 {
+                                                    customer.Customer_ID,
+                                                     customer.Customer_Name
+                                                 })
+                                                .Distinct()
+                                                .ToList();
+            var customerDetails = customersWithAppointments.Select(c => new Customer
+            {
+                Customer_ID = c.Customer_ID,
+                Customer_Name = c.Customer_Name
+            }).ToList();
+
+          // ViewBag.Customer_ID = new SelectList(db.Customer, "Customer_ID", "Customer_Name");
+             ViewBag.Customer_ID = new SelectList(customerDetails, "Customer_ID", "Customer_Name");
             ViewBag.Dentist_ID = new SelectList(db.Dentist, "Dentist_ID", "Dentist_Name");
             ViewBag.Prescription_ID = new SelectList(db.Prescription, "Prescription_ID", "Prescription_Date");
             return View();
@@ -56,11 +78,13 @@ namespace DatLich.Controllers
             {
                 string email = Session["Login"] as string;
                 var user = db.Dentist.FirstOrDefault(u => u.Dentist_Email == email);
-                medicalHistory.Dentist_ID=user.Dentist_ID;
-                medicalHistory.MedicalHistory_Date=DateTime.Now.ToString();
+                // medicalHistory.Dentist_ID = user.Dentist_ID;
+                DateTime currentDate = DateTime.Now;
+                string formattedDate = currentDate.ToString("yyyy-MM-dd");
+                medicalHistory.MedicalHistory_Date = formattedDate;
                 db.MedicalHistory.Add(medicalHistory);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Dentist");
             }
 
             ViewBag.Customer_ID = new SelectList(db.Customer, "Customer_ID", "Customer_Name", medicalHistory.Customer_ID);

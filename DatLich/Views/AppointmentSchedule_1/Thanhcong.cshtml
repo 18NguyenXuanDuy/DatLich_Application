@@ -1,2 +1,60 @@
-﻿
-<h1>Bạn đã đặt lịch thành công</h1>
+﻿@*<h1>Bạn đã đặt lịch thành công</h1>*@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông báo thành công</title>
+    <style>
+      /*  body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }*/
+/*
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .container h1 {
+                color: #4CAF50;
+                font-size: 24px;
+            }
+
+            .container p {
+                color: #555;
+                margin: 15px 0;
+            }
+
+            .container a {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+                .container a:hover {
+                    background-color: #45a049;
+                }*/
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bạn đã đặt lịch thành công</h1>
+        <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Vui lòng kiểm tra email để biết thêm chi tiết.</p>
+<a href="@Url.Action("Index","Home")">Quay lại trang chủ</a>
+    </div>
+</body>
+</html>

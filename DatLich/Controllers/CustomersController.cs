@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -23,6 +24,9 @@ namespace DatLich.Controllers
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
+            string email = Session["Login"] as string;
+            var user = db.Customer.FirstOrDefault(u => u.Customer_Email == email);
+            id = user.Customer_ID;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -78,12 +82,35 @@ namespace DatLich.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Customer_ID,Customer_Name,Customer_Email,Customer_Age,Customer_Phone,Customer_Gender,Customer_Img")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Customer_ID,Customer_Name,Customer_Email,Customer_Age,Customer_Phone,Customer_Gender,Customer_Img")] Customer customer, HttpPostedFileBase uploadhinh)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(customer).State = EntityState.Modified;
-                db.SaveChanges();
+
+                string email = Session["Login"] as string;
+                var user = db.Customer.FirstOrDefault(u => u.Customer_Email == email);
+                if (user == null)
+                {
+                    RedirectToAction("Index", "Home");
+                }
+                else
+                {
+
+                    if (uploadhinh != null && uploadhinh.ContentLength > 0)
+                    {
+                        int id = customer.Customer_ID;
+
+                        string _FileName = "";
+                        int index = uploadhinh.FileName.IndexOf('.');
+                        _FileName = "Customer_" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
+                        string _path = Path.Combine(Server.MapPath("~/Upload/Customer"), _FileName);
+                        uploadhinh.SaveAs(_path);
+                        customer.Customer_Img = _FileName;
+                    }
+
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             return View(customer);

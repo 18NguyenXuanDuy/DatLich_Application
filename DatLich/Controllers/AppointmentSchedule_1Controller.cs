@@ -75,34 +75,36 @@ namespace DatLich.Controllers
                     newCustomer.Customer_Phone = appointmentSchedule_1.Customer_Phone;
                     newCustomer.Customer_Email= appointmentSchedule_1.Customer_Email;
                     db.Customer.Add(newCustomer);
+                    db.SaveChanges();
+                    CustomerId = newCustomer.Customer_ID;
+
                 }
-                else
-                {
-                    int CustomerId1 = db.Customer
-                     .Where(customers => customers.Customer_Name == appointmentSchedule_1.Customer_Name &&
-                                       customers.Customer_Email == appointmentSchedule_1.Customer_Email &&
-                                       customers.Customer_Phone == appointmentSchedule_1.Customer_Phone)
-                     .Select(a => a.Customer_ID)
-                     .FirstOrDefault();
+               
+                    //int CustomerId1 = db.Customer
+                    // .Where(customers => customers.Customer_Name == appointmentSchedule_1.Customer_Name &&
+                    //                   customers.Customer_Email == appointmentSchedule_1.Customer_Email &&
+                    //                   customers.Customer_Phone == appointmentSchedule_1.Customer_Phone)
+                    // .Select(a => a.Customer_ID)
+                    // .FirstOrDefault();
                     AppointmentSchedule appointmentSchedule = new AppointmentSchedule();
-                    appointmentSchedule.AppointmentSchedule_Status = 1;
+                    appointmentSchedule.AppointmentSchedule_Status = false;
                     appointmentSchedule.AppointmentSchedule_Date =  date.ToString(); ;
-                    appointmentSchedule.Customer_ID= CustomerId1;
+                    appointmentSchedule.Customer_ID= CustomerId.Value;
                     appointmentSchedule.TimeOrder = DateTime.Now;
                     appointmentSchedule.Describe = appointmentSchedule_1.Describe;
                     appointmentSchedule.ShiftWork_ID= appointmentSchedule_1.ShiftWork_ID;
                     appointmentSchedule.Dentist_ID = null;
                     appointmentSchedule.Employee_ID = null;
                     db.AppointmentSchedule.Add(appointmentSchedule);
-
-                }
+                db.SaveChanges();
+                
                 var notification = new HistoryChanges
                 {
 
                     HistoryChange_Message = $"Lịch khám của {appointmentSchedule_1.Customer_Name} đã được thêm mới vào ngày {DateTime.Now.ToString("dd/MM/yyyy")} lúc {DateTime.Now.ToString("HH:mm")}.",
                     HistoryChange_Time = DateTime.Now,
                     Activity_Change = "ADD",
-                    //AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID
+                    AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID
                 };
                 db.HistoryChanges.Add(notification);
 
@@ -173,6 +175,7 @@ namespace DatLich.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(appointmentSchedule_1).State = EntityState.Modified;
+                db.SaveChanges();
 
                 var notification = new HistoryChanges
                 {
@@ -186,7 +189,21 @@ namespace DatLich.Controllers
 
                 db.HistoryChanges.Add(notification);
                 db.SaveChanges();
-                return RedirectToAction("HienThi", "User");
+                string login = Session["Login"] as string;
+                if (login == null)
+                {
+                    return RedirectToAction("HienThi", "User");
+                }
+                else {
+                 var employee = db.Employee.Where(x => x.Employee_Email == login);
+                var dentist = db.Dentist.Where(x => x.Dentist_Email == login);
+
+                    if (employee != null)
+                        return RedirectToAction("Index", "Employee");
+                    if(dentist != null)
+                        return RedirectToAction("Index", "Dentist");
+                }
+                
             }
             ViewBag.Dentist_ID = new SelectList(db.Dentist, "Dentist_ID", "Dentist_Name", appointmentSchedule_1.Dentist_ID);
             ViewBag.Employee_ID = new SelectList(db.Employee, "Employee_ID", "Employee_Name", appointmentSchedule_1.Employee_ID);
@@ -216,13 +233,15 @@ namespace DatLich.Controllers
         {
             AppointmentSchedule_1 appointmentSchedule = db.AppointmentSchedule_1.Find(id);
             db.AppointmentSchedule_1.Remove(appointmentSchedule);
+            db.SaveChanges();
+
             var notification = new HistoryChanges
             {
 
                 HistoryChange_Message = $"Lịch khám của {appointmentSchedule.Customer_Name} đã được xóa vào ngày {DateTime.Now.ToString("dd/MM/yyyy")} lúc {DateTime.Now.ToString("HH:mm")}.",
                 HistoryChange_Time = DateTime.Now,
                 Activity_Change = "DELETE",
-                //AppointmentSchedule_ID = appointmentSchedule.AppointmentSchedule1_ID
+                AppointmentSchedule_ID = appointmentSchedule.AppointmentSchedule1_ID
 
             };
 

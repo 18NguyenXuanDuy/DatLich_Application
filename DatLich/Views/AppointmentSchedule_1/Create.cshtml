@@ -82,8 +82,8 @@
                                                 class="form-control border-0 datetimepicker-input"
                                                 placeholder="Ngày khám" data-target="#date" style="height: 55px;" name="date">*@
                                             <input type="date"
-                                                   class="form-control border-0 datetimepicker-input"
-                                                   placeholder="Ngày khám" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" name="date" id="datepicker">
+                                                   class="form-control border-0 "
+                                                   placeholder="Ngày khám"  style="height: 55px;" name="date" id="datepicker">
                                         </div>
 
 
@@ -94,11 +94,12 @@
                                     <div class="col-md-10">
                                         @Html.DropDownList("ShiftWork_ID", null, htmlAttributes: new { @class = "form-control", style = "height: 55px; background-color: white;" })
                                         @Html.ValidationMessageFor(model => model.ShiftWork_ID, "", new { @class = "text-danger" })
+                                        @ViewBag.LoiSoLuong;
                                     </div>
                                 </div>
                                 <div class="col-12">
 
-                                    @Html.TextAreaFor(model => model.Describe, new { htmlAttributes = new { @class = "form-control", style = "width: 500px;" } })
+                                    @Html.TextAreaFor(model => model.Describe, new { htmlAttributes = new { @class = "form-control", style = "width: 500px;", placeholder = "Mô tả" } })
                                     @Html.ValidationMessageFor(model => model.Describe, "", new { @class = "text-danger" })
 
                                 </div>
@@ -133,4 +134,5 @@
             });
         });
     });
+   
 </script>

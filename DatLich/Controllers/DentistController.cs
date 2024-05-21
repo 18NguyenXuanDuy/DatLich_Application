@@ -53,6 +53,10 @@ namespace DatLich.Controllers
                 ViewData["LichKhamViewModels2"] = list;
                 return View();
             }
+            else
+            {
+                ViewBag.ThongbaoDentist = "Bạn không có lịch khám";
+            }
             return View();
 
         }

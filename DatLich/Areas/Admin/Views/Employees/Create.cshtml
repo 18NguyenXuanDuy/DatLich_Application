@@ -5,10 +5,10 @@
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Thêm nhân viên</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -42,10 +42,11 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Employee_Img, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Employee_Img, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Employee_Img, "", new { @class = "text-danger" })
-            </div>
+            @*<div class="col-md-10">
+            @Html.EditorFor(model => model.Employee_Img, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Employee_Img, "", new { @class = "text-danger" })
+        </div>*@
+            <input type="file" id="uploadhinh" name="uploadhinh" accept="image/*" />
         </div>
 
         <div class="form-group">

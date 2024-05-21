@@ -17,8 +17,14 @@ namespace DatLich.Controllers
         // GET: Comment_Customer
         public ActionResult Index()
         {
-            var comment_Customer = db.Comment_Customer.Include(c => c.Customer);
-            return View(comment_Customer.ToList());
+            string email= Session["Login"] as string;
+            var user=db.Customer.Where(x=>x.Customer_Email == email).FirstOrDefault();
+            int Customer_Id = user.Customer_ID;
+            // var comment_Customer = db.Comment_Customer.Include(c => c.Customer);
+            var coment = db.Comment_Customer.Where(x => x.Customer_ID == Customer_Id);
+            //return View(comment_Customer.ToList());
+            return View(coment.ToList());
+
         }
 
         // GET: Comment_Customer/Details/5
@@ -39,7 +45,7 @@ namespace DatLich.Controllers
         // GET: Comment_Customer/Create
         public ActionResult Create()
         {
-            ViewBag.Customer_ID = new SelectList(db.Customer, "Customer_ID", "Customer_Name");
+           // ViewBag.Customer_ID = new SelectList(db.Customer, "Customer_ID", "Customer_Name");
             return View();
         }
 
@@ -47,17 +53,36 @@ namespace DatLich.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CommentCustomer_ID,CommentCustomer_Content,CommentCustomer_TimeOrder,Customer_ID")] Comment_Customer comment_Customer)
+        //[ ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "CommentCustomer_ID,CommentCustomer_Content,CommentCustomer_TimeOrder")] Comment_Customer comment_Customer,string message,string email, string subject)
         {
+            string email1 = Session["Login"] as string;
+            var user1 = db.Customer.Where(x => x.Customer_Email == email1).FirstOrDefault();
+            var user2 = db.Customer.Where(x => x.Customer_Email == email).FirstOrDefault();
+
             if (ModelState.IsValid)
             {
+                
+                if (user1 != null || user2!=null)
+                {
+                    
+                    comment_Customer.CommentCustomer_TimeOrder=DateTime.Now.ToString();
+                    comment_Customer.Customer_ID=user1.Customer_ID;
+                }
+                if(user2 != null)
+                {
+                    comment_Customer.CommentCustomer_Content = subject + "/n" + message;
+                    comment_Customer.CommentCustomer_TimeOrder = DateTime.Now.ToString();
+                   int id= user2.Customer_ID;
+                    comment_Customer.Customer_ID = id;
+                }
                 db.Comment_Customer.Add(comment_Customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Customer_ID = new SelectList(db.Customer, "Customer_ID", "Customer_Name", comment_Customer.Customer_ID);
+            // ViewBag.Customer_ID = new SelectList(db.Customer, "Customer_ID", "Customer_Name", comment_Customer.Customer_ID);
+            ViewBag.Customer_ID = user1?.Customer_Name;
             return View(comment_Customer);
         }
 

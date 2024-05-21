@@ -1,0 +1,67 @@
+﻿@model IEnumerable<DatLich.Models.MedicalHistory>
+@{
+    ViewBag.Title = "Hienthilichsu";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Hiển thị lịch sử khám bệnh</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lịch sử khám bệnh</title>
+</head>
+<body>
+ 
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.Customer_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dentist.Dentist_Name)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory_Symptoms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalHistory_Diagnosis)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Customer_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dentist.Dentist_Name)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicalHistory_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicalHistory_Symptoms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicalHistory_Diagnosis)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MedicalHistory_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MedicalHistory_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MedicalHistory_ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

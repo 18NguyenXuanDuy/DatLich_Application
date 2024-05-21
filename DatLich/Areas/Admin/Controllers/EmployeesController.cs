@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,10 +47,21 @@ namespace DatLich.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Employee_ID,Employee_Name,Employee_Email,Employee_Infor,Employee_Img")] Employee employee)
+        public ActionResult Create([Bind(Include = "Employee_ID,Employee_Name,Employee_Email,Employee_Infor,Employee_Img")] Employee employee, HttpPostedFileBase uploadhinh)
         {
             if (ModelState.IsValid)
             {
+                if (uploadhinh != null && uploadhinh.ContentLength > 0)
+                {
+                    int id = employee.Employee_ID;
+
+                    string _FileName = "";
+                    int index = uploadhinh.FileName.IndexOf('.');
+                    _FileName = "Employee" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
+                    string _path = Path.Combine(Server.MapPath("~/Upload/Employeee"), _FileName);
+                    uploadhinh.SaveAs(_path);
+                    employee.Employee_Img = _FileName;
+                }    
                 db.Employee.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,11 +90,22 @@ namespace DatLich.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Employee_ID,Employee_Name,Employee_Email,Employee_Infor,Employee_Img")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Employee_ID,Employee_Name,Employee_Email,Employee_Infor,Employee_Img")] Employee employee, HttpPostedFileBase uploadhinh)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;
+                if (uploadhinh != null && uploadhinh.ContentLength > 0)
+                {
+                    int id = employee.Employee_ID;
+
+                    string _FileName = "";
+                    int index = uploadhinh.FileName.IndexOf('.');
+                    _FileName = "Employee" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
+                    string _path = Path.Combine(Server.MapPath("~/Upload/Employee"), _FileName);
+                    uploadhinh.SaveAs(_path);
+                    employee.Employee_Img = _FileName;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

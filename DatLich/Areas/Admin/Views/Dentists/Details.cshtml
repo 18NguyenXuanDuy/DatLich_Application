@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Thông tin chi tiết</h2>
 
 <div>
     <h4>Dentist</h4>
@@ -40,7 +40,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Dentist_Img)
+            <img style="width:80px;height:80px" src="@Url.Content("~/Upload/Dentist/" +Model.Dentist_Img)" />
         </dd>
 
     </dl>

@@ -5,7 +5,6 @@
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -28,7 +27,7 @@
             @Html.DisplayNameFor(model => model.Customer_Gender)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customer_Img)
+            Hình ảnh
         </th>
         <th></th>
     </tr>
@@ -51,12 +50,11 @@
             @Html.DisplayFor(modelItem => item.Customer_Gender)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Customer_Img)
-        </td>
+            <img style="width:50px;height:50px" src="~/Upload/Customer/@item.Customer_Img" /> 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Customer_ID }) |
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Customer_ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.Customer_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Customer_ID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Customer_ID })*@
         </td>
     </tr>
 }
