@@ -120,7 +120,7 @@ namespace DatLich.Areas.Admin.Controllers
                 ShiftWork_Name = l.ShiftWork.ShiftWork_Name,
                 Employee_Name=l.Employee.Employee_Name,
                 AppointmentSchedule_Date = l.AppointmentSchedule_Date,
-                TimeOder=l.TimeOrder,
+               TimeOrder= l.TimeOrder,
                 AppointmentSchedule_Status = l.AppointmentSchedule_Status ? "Hoàn thành" : "Chưa hoàn thành",
             }).ToList();
             reportDataSource.Value = lichKhams;

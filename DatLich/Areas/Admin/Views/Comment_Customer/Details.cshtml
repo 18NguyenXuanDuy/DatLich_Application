@@ -1,0 +1,43 @@
+﻿@model DatLich.Models.Comment_Customer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comment_Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Customer_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Customer_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentCustomer_Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentCustomer_Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentCustomer_TimeOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentCustomer_TimeOrder)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CommentCustomer_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

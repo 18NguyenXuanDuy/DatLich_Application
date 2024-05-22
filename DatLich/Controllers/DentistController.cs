@@ -18,7 +18,7 @@ namespace DatLich.Controllers
             var user = db.Dentist.FirstOrDefault(u => u.Dentist_Email == email);
 
             ViewBag.DentistName = user.Dentist_Name;
-            var Nguoidung = db.AppointmentSchedule_1.Where(s => s.AppointmentSchedule_Status == false && s.Dentist_ID!=null).ToList();
+            var Nguoidung = db.AppointmentSchedule_1.Where(s => s.AppointmentSchedule_Status == false && s.Dentist_ID==user.Dentist_ID).ToList();
 
             List<AppointmentViewModel> list = new List<AppointmentViewModel>();
 

@@ -12,18 +12,19 @@
         [Key]
         public int AppointmentSchedule1_ID { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = "Tên khách hàng là bắt buộc.")]
+        [StringLength(100, ErrorMessage = "Tên khách hàng không được quá 100 ký tự.")]
         [DisplayName("Tên khách hàng")]
         public string Customer_Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email là bắt buộc.")]
         [StringLength(100)]
+        [EmailAddress(ErrorMessage = "Email không hợp lệ.")] 
         [DisplayName("Email")]
         public string Customer_Email { get; set; }
 
-        [Required]
-        [StringLength(12)]
+        [Required(ErrorMessage = "Số điện thoại là bắt buộc.")]
+        [StringLength(12, ErrorMessage = "Số điện thoại không được quá 12 ký tự.")]
         [DisplayName("Số điện thoại")]
         public string Customer_Phone { get; set; }
         [DisplayName("Trạng thái")]

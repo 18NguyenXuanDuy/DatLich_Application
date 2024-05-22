@@ -49,6 +49,13 @@ namespace DatLich.Controllers
             return RedirectToAction("Index","Home");
 
         }
+        public ActionResult PhanHoiCuaToi()
+        {
+            string email = Session["Login"] as string;
+            int user = db.Customer.Where(x => x.Customer_Email == email).Select(x => x.Customer_ID).FirstOrDefault();
+            var listcoment=db.Comment_Customer.Where(x=>x.Customer_ID == user).ToList();
+            return View(listcoment);
+        }
         public ActionResult Hienthilichsu()
         {
             string email = Session["Login"] as string;

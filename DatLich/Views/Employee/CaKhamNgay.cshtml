@@ -1,0 +1,33 @@
+﻿
+@model IEnumerable<DatLich.Models.ShiftWork_Appoint>
+
+@{
+    ViewBag.Title = "Appointments for Next Week";
+    //Layout = "~/Views/Employee/Index.cshtml";
+}
+
+<h2>Appointments for Next Week</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Current Quantity</th>
+            <th>Maximum Quantity</th>
+            <th>Shift Work ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.ShiftWorkAppoint_ID</td>
+                <td>@appointment.ShiftWorkAppoint_Date</td>
+                <td>@appointment.Current_Quantity</td>
+                <td>@appointment.Maximum_Quantity</td>
+                <td>@appointment.ShiftWork.ShiftWork_Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

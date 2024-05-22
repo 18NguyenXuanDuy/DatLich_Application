@@ -39,7 +39,12 @@ namespace DatLich.Controllers
         {
             return View();
         }
-
+        public ActionResult ThatBai()
+        {
+            ViewBag.date = TempData["Ngay1"] as string;
+            ViewBag.Cakham = TempData["CaKham1"] as string;
+            return View();
+        }
         // GET: AppointmentSchedule_1/Create
         public ActionResult Create()
         {
@@ -59,9 +64,14 @@ namespace DatLich.Controllers
             if (ModelState.IsValid)
             {
                 appointmentSchedule_1.TimeOrder = DateTime.Now;
+                TempData["Ngay1"] = date.ToString();
+               
                 appointmentSchedule_1.AppointmentSchedule_Date=date.ToString();
                 db.AppointmentSchedule_1.Add(appointmentSchedule_1);
-                
+                db.SaveChanges();
+                int shitID = appointmentSchedule_1.ShiftWork_ID??0;
+                var shift = db.ShiftWork.Where(x => x.ShiftWork_ID == shitID).Select(x => x.ShiftWork_Name);
+                TempData["CaKham1"] = shift;
                 int? CustomerId = db.Customer
                      .Where(customers => customers.Customer_Name == appointmentSchedule_1.Customer_Name &&
                                        customers.Customer_Email == appointmentSchedule_1.Customer_Email &&
@@ -88,24 +98,25 @@ namespace DatLich.Controllers
                     // .FirstOrDefault();
                     AppointmentSchedule appointmentSchedule = new AppointmentSchedule();
                     appointmentSchedule.AppointmentSchedule_Status = false;
-                    appointmentSchedule.AppointmentSchedule_Date =  date.ToString(); ;
-                    appointmentSchedule.Customer_ID= CustomerId.Value;
+                    appointmentSchedule.AppointmentSchedule_Date =  date.ToString();
+                appointmentSchedule.Customer_ID= CustomerId.Value;
                     appointmentSchedule.TimeOrder = DateTime.Now;
                     appointmentSchedule.Describe = appointmentSchedule_1.Describe;
                     appointmentSchedule.ShiftWork_ID= appointmentSchedule_1.ShiftWork_ID;
+               
                     appointmentSchedule.Dentist_ID = null;
                     appointmentSchedule.Employee_ID = null;
                     db.AppointmentSchedule.Add(appointmentSchedule);
                 db.SaveChanges();
-                
                 var notification = new HistoryChanges
                 {
 
                     HistoryChange_Message = $"Lịch khám của {appointmentSchedule_1.Customer_Name} đã được thêm mới vào ngày {DateTime.Now.ToString("dd/MM/yyyy")} lúc {DateTime.Now.ToString("HH:mm")}.",
                     HistoryChange_Time = DateTime.Now,
                     Activity_Change = "ADD",
-                    AppointmentSchedule_ID = appointmentSchedule_1.AppointmentSchedule1_ID
+                    //AppointmentSchedule_ID = appoiment
                 };
+
                 db.HistoryChanges.Add(notification);
 
                 ShiftWork_Appoint shiftWork_Appoint = new ShiftWork_Appoint();
@@ -127,9 +138,10 @@ namespace DatLich.Controllers
                 else
                 {
                   shiftWork_Appoint = db.ShiftWork_Appoint.Find(shiftworkId);
-                    if (shiftWork_Appoint.Current_Quantity > 4)
+                    if (shiftWork_Appoint.Current_Quantity == 4)
                     {
-                        ViewBag.LoiSoLuong = "Ca khám đã đầy.Mời chọn ca khác!";
+                        db.AppointmentSchedule_1.Remove(appointmentSchedule_1);
+                       return RedirectToAction("ThatBai", "AppointmentSchedule_1");
                     }
                     else
                     {
@@ -241,7 +253,7 @@ namespace DatLich.Controllers
                 HistoryChange_Message = $"Lịch khám của {appointmentSchedule.Customer_Name} đã được xóa vào ngày {DateTime.Now.ToString("dd/MM/yyyy")} lúc {DateTime.Now.ToString("HH:mm")}.",
                 HistoryChange_Time = DateTime.Now,
                 Activity_Change = "DELETE",
-                AppointmentSchedule_ID = appointmentSchedule.AppointmentSchedule1_ID
+                //AppointmentSchedule_ID = appointmentSchedule.AppointmentSchedule1_ID
 
             };
 

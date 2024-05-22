@@ -22,7 +22,7 @@ namespace DatLich.Controllers
             var user = db.Employee.FirstOrDefault(u => u.Employee_Email == email);
 
             ViewBag.EmployeeName = user.Employee_Name;
-                var Nguoidung = db.AppointmentSchedule_1.Where(s =>  s.AppointmentSchedule_Status==false).ToList();
+                var Nguoidung = db.AppointmentSchedule_1.Where(s => s.Dentist_ID==null).ToList();
 
                 List<AppointmentViewModel> list = new List<AppointmentViewModel>();
 
@@ -62,9 +62,19 @@ namespace DatLich.Controllers
         }
         public ActionResult CaKhamNgay()
         {
-            var list = db.ShiftWork_Appoint.ToList();
-            ViewData["Cakham"] = list;
-            return View();
+            DateTime today = DateTime.Now;
+            DateTime nextWeek = today.AddDays(7);
+
+            var appointmentsNextWeek = db.ShiftWork_Appoint
+                .ToList()
+                .Where(appointment =>
+                {
+                    DateTime appointmentDate;
+                    bool isValidDate = DateTime.TryParse(appointment.ShiftWorkAppoint_Date, out appointmentDate);
+                    return isValidDate && appointmentDate >= today && appointmentDate < nextWeek;
+                }).ToList();
+
+            return View(appointmentsNextWeek);
         }
     }
 }

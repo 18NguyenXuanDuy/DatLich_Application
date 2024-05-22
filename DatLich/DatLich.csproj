@@ -242,6 +242,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\Comment_CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DentistsController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeesController.cs" />
@@ -269,6 +270,7 @@
     <Compile Include="Models\AppointmentSchedule.cs" />
     <Compile Include="Models\AppointmentSchedule_1.cs" />
     <Compile Include="Models\AppointmentViewModel.cs" />
+    <Compile Include="Models\ComentViewModel.cs" />
     <Compile Include="Models\Comment_Customer.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Dentist.cs" />
@@ -397,6 +399,11 @@
     <Content Include="DATN_ApplicationDataSet.xsc">
       <DependentUpon>DATN_ApplicationDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Comment_Customer\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment_Customer\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment_Customer\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment_Customer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment_Customer\Index.cshtml" />
     <None Include="DATN_ApplicationDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DATN_ApplicationDataSet.Designer.cs</LastGenOutput>
@@ -546,6 +553,9 @@
     <Content Include="Views\ShiftWork_Appoint\Index.cshtml" />
     <Content Include="Views\Dentist\Index.cshtml" />
     <Content Include="Views\User\Hienthilichsu.cshtml" />
+    <Content Include="Views\Employee\CaKhamNgay.cshtml" />
+    <Content Include="Views\User\PhanHoiCuaToi.cshtml" />
+    <Content Include="Views\AppointmentSchedule_1\ThatBai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

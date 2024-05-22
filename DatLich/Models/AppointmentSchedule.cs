@@ -23,7 +23,7 @@
         [DisplayName("Trạng thái")]
         public bool AppointmentSchedule_Status { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Ngày khámlà bắt buộc.")]
         [StringLength(20)]
         [DisplayName("Ngày khám")]
 
